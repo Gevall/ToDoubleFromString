@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace ToDoubleFromString.Logic
         /// Алгоритм преобразования строки в число
         /// </summary>
         /// <param name="str"></param>
-        public void transformString(string str)
+        public double transformString(string str)
         {
             string tmp = null;
             int count = 0;
@@ -30,7 +31,6 @@ namespace ToDoubleFromString.Logic
                 {
                     if (count > 1)
                     {
-                        errorNumber();
                         break;
                     }
                     else
@@ -60,10 +60,11 @@ namespace ToDoubleFromString.Logic
                 double y = numbers[1];
                 y = y / mlp;
 
-                Console.WriteLine($"Певая часть числа: {x}" +
-                                  $"\n Число после запятой: {y}" +
-                                  $"\n Получившееся число: {x + y}");
-
+                return x + y;
+            }
+            else 
+            {
+                return 0;
             }
         }
 
@@ -90,23 +91,16 @@ namespace ToDoubleFromString.Logic
         }
 
         /// <summary>
-        /// Сообщение об ошибке
-        /// </summary>
-        public void errorNumber()
-        {
-            Console.WriteLine("Введенная строка не является числом!");
-        }
-
-        /// <summary>
         /// Проверка строки на коррктность ввода, для конвертации в Double
         /// </summary>
         /// <param name="input">Введенная строка</param>
         /// <returns></returns>
-        public void checkInput(string input)
+        public double checkInput(string input)
         {
             bool isInNumber;
             bool isInteger = true;
             int count = 0;
+
             for (int i = 0; i < input.Length; i++)
             {
                 isInNumber = char.IsNumber(input, i);
@@ -116,14 +110,12 @@ namespace ToDoubleFromString.Logic
                     {
                         if (i == 0)
                         {
-                            Console.WriteLine("Введенная строка содержит недопустимые символы!");
                             isInteger = false;
                             break;
                         }
                         count++;
                         if (count > 1)
                         {
-                            Console.WriteLine("Введенная строка содержит недопустимые символы!");
                             break;
                         }
                         else 
@@ -134,23 +126,18 @@ namespace ToDoubleFromString.Logic
                     }
                     else
                     {
-                        Console.WriteLine("Введенная строка содержит недопустимые символы!");
                         isInteger = false;
                         break;
                     }
                 }
             }
-
             if (isInteger)
             {
-                Console.WriteLine(">>>>> Введенное число корректно! <<<<<");
-
-                finalDouble = int.Parse(input);
-                Console.WriteLine($"Получившееся число: {finalDouble}");
+                return int.Parse(input); ;
             }
             else 
             {
-                transformString(input);
+                return transformString(input);
             }
         }
 

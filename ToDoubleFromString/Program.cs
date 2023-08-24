@@ -12,14 +12,23 @@ namespace ToDoubleFromString
         {
             ITransformLogic transform = new TransformLogic();
             string str = "";
-            
+            double convert;
 
             while (true)
             {
                 Console.Write("Введите число которое необходимо преобразовать: ");
                 str = Console.ReadLine();
 
-                transform.checkInput(str);
+                convert = transform.checkInput(str);
+
+                if (convert == 0)
+                {
+                    Console.WriteLine("Введенная строка не может быть преобразована в \"double\"");
+                }
+                else
+                {
+                    Console.WriteLine($"Сконвертированное число: {convert}");
+                }
             }
 
         }

@@ -9,13 +9,11 @@ namespace ToDoubleFromString.Interfaces
     interface ITransformLogic
     {
 
-        void transformString(string str);
+        double transformString(string str);
 
         bool checkNumber(string str, int index);
 
-        void errorNumber();
-
-        void checkInput(string input);
+        double checkInput(string input);
 
     }
 }
