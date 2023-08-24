@@ -46,7 +46,7 @@ namespace ToDoubleFromString.Logic
                 tmp += str[i];
                 ZeroAfterDote += "0";
 
-                if (i == str.Length - 1)
+                if (i == str.Length - 1 && count < 2)
                 {
                     if (checkNumber(tmp, count) == false) break;
                     else writeBool = true;
@@ -63,6 +63,7 @@ namespace ToDoubleFromString.Logic
                 Console.WriteLine($"Певая часть числа: {x}" +
                                   $"\n Число после запятой: {y}" +
                                   $"\n Получившееся число: {x + y}");
+
             }
         }
 
@@ -84,7 +85,6 @@ namespace ToDoubleFromString.Logic
             }
             else
             {
-                errorNumber();
                 return false;
             }
         }
@@ -116,13 +116,14 @@ namespace ToDoubleFromString.Logic
                     {
                         if (i == 0)
                         {
-                            Console.WriteLine("Введено некоректное число!");
+                            Console.WriteLine("Введенная строка содержит недопустимые символы!");
+                            isInteger = false;
                             break;
                         }
                         count++;
                         if (count > 1)
                         {
-                            Console.WriteLine("Введено некоректное число!");
+                            Console.WriteLine("Введенная строка содержит недопустимые символы!");
                             break;
                         }
                         else 
@@ -133,19 +134,24 @@ namespace ToDoubleFromString.Logic
                     }
                     else
                     {
-                        Console.WriteLine("Введено некоректное число!");
+                        Console.WriteLine("Введенная строка содержит недопустимые символы!");
+                        isInteger = false;
                         break;
                     }
                 }
             }
-            Console.WriteLine(">>>>> Введенное число корректно! <<<<<");
 
             if (isInteger)
             {
+                Console.WriteLine(">>>>> Введенное число корректно! <<<<<");
+
                 finalDouble = int.Parse(input);
                 Console.WriteLine($"Получившееся число: {finalDouble}");
             }
-            else transformString(input);
+            else 
+            {
+                transformString(input);
+            }
         }
 
     }

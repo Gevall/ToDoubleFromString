@@ -12,7 +12,7 @@ namespace ToDoubleFromString
         {
             ITransformLogic transform = new TransformLogic();
             string str = "";
-
+            
 
             while (true)
             {
